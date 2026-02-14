@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+        <title>Milo's letter for baby Riri</title>
+
+        <!-- Style CSS -->
+        <link rel="stylesheet" href="./style.css">
+    </head>
+    <body>
+        <h1 class="valentine" id="typewriter-text"><span id="typewriter-content">a letter for my baby, Riri...</span><span class="typewriter-cursor">|</span></h1>
+        <style>
+        .typewriter-cursor {
+            display: inline-block;
+            width: 1ch;
+            animation: blink-cursor 1s steps(1) infinite;
+            color: #b04a6a;
+            font-weight: bold;
+        }
+        @keyframes blink-cursor {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+        </style>
+        <script>
+        // Typewriter animation for the h1 with blinking cursor
+        document.addEventListener('DOMContentLoaded', function() {
+            var contentSpan = document.getElementById('typewriter-content');
+            var cursorSpan = document.querySelector('.typewriter-cursor');
+            var text = contentSpan.textContent;
+            contentSpan.textContent = '';
+            let i = 0;
+            function type() {
+                if (i < text.length) {
+                    contentSpan.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(type, 75);
+                } else {
+                    cursorSpan.style.display = 'inline-block';
+                }
+            }
+            type();
+        });
+        </script>
+        <div class="envelope-wrapper">
+            <div id="envelope" class="close">
+                <div class="front flap"></div>
+                <div class="front pocket"></div>
+                <div class="letter">
+                        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; width: 100%; background: transparent; box-shadow: none;">
+                            <img src="./assets/letter-rose.png" alt="Letter with rose" class="letter-rose-inside" />
+                            <span class="letter-caption">for my Riri</span>
+                        </div>
+                </div>
+                <div class="hearts">
+                    <div class="heart a1 heart-red1"></div>
+                    <div class="heart a2 heart-red2"></div>
+                    <div class="heart a3 heart-red3"></div>
+                    <div class="heart a4 heart-red4"></div>
+                    <div class="heart a5 heart-red5"></div>
+                    <div class="heart a6 heart-red6"></div>
+                    <div class="heart a7 heart-red2"></div>
+                    <div class="heart a8 heart-red3"></div>
+                    <div class="heart a9 heart-red4"></div>
+                    <div class="heart a10 heart-red5"></div>
+                </div>
+            </div>
+        </div>
+        <div class="reset">
+            <button id="open">Open</button>
+            <button id="reset">Close</button>
+        </div>
+        
+        <div class="overlay" id="overlay" aria-hidden="true">
+            <div class="popup" id="popup" role="dialog" aria-modal="true">
+                <button id="closePopup" class="close-popup" aria-label="Close">×</button>
+                <div class="popup-letter" id="popup-letter"></div>
+                <!-- Separate popup letter content -->
+                <div id="popup-letter-content" style="display:none;">
+                    <p>Roses are red,</p>
+                    <p>violets are blue,</p>
+                    <p></p>
+                    <p>Can this busy ass person,</p>
+                    <p>who loves you very much.</p>
+                    <p></p>
+                    <p>date you on the last week of April,</p>
+                    <p>after his Board Exam?</p>
+                    <p></p>
+                    <p>-Milo</p>
+                    <div class="popup-buttons">
+                        <button id="popup-yes">Yes</button>
+                        <button id="popup-no">No</button>
+                    </div>
+                </div>
+                <div class="popup-rose" id="popup-rose" aria-hidden="true">
+                    <!-- Use provided rose image file. Save the attached image as assets/popup-rose.png -->
+                    <img id="popup-rose-img" src="./assets/popup-rose.png" alt="Decorative rose">
+                </div>
+            </div>
+            <!-- Ticket popup overlay, initially hidden -->
+            <div class="ticket-popup" id="ticket-popup" style="display:none; align-items:center; justify-content:center; position:fixed; inset:0; z-index:1001; background:transparent;">
+                <img src="./assets/valentines_ticket_vector.png" alt="Valentine's Ticket" style="max-width:90vw; max-height:90vh; display:block; margin:auto;" />
+            </div>
+            </div>
+        </div>
+
+        <!-- Script JS -->
+        <script src="./script.js"></script>
+        <!-- Floating hearts from below the page -->
+        <div class="floating-hearts"></div>
+    </body>
+</html>
+
