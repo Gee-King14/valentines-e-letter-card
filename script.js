@@ -1,4 +1,39 @@
 $(document).ready(function() {
+                // Ambient music toggle
+                $('#music-toggle').click(function() {
+                    var audio = document.getElementById('ambient-music');
+                    if (audio.paused) {
+                        audio.play();
+                        $(this).text('🔊 Music');
+                    } else {
+                        audio.pause();
+                        $(this).text('🔇 Music');
+                    }
+                });
+    // Ensure ambient music plays on page load (handles autoplay restrictions)
+    document.addEventListener('DOMContentLoaded', function() {
+        var audio = document.getElementById('ambient-music');
+        if (audio) {
+            audio.muted = false;
+            audio.removeAttribute('muted');
+            // Try to play immediately
+            var playPromise = audio.play();
+            if (playPromise !== undefined) {
+                playPromise.catch(function(err) {
+                    // If autoplay is blocked, wait for first user interaction
+                    var resumeAudio = function() {
+                        audio.muted = false;
+                        audio.removeAttribute('muted');
+                        audio.play();
+                        window.removeEventListener('click', resumeAudio);
+                        window.removeEventListener('touchstart', resumeAudio);
+                    };
+                    window.addEventListener('click', resumeAudio);
+                    window.addEventListener('touchstart', resumeAudio);
+                });
+            }
+        }
+    });
             // Handle Yes/No popup buttons
             $(document).on('click', '#popup-yes', function() {
                 // Fade out popup letter
